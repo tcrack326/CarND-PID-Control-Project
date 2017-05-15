@@ -20,11 +20,13 @@ void PID::Init(double Kp, double Ki, double Kd) {
 }
 
 void PID::UpdateError(double cte) {
+  d_error = cte - p_error;
   p_error = cte;
   i_error += cte;
-  d_error = cte - p_error;
+
 }
 
 double PID::TotalError() {
+  //reference: steer = -tau_p * cte - tau_d * diff_cte - tau_i * int_cte
   return -(p_error * Kp) - (i_error * Ki) - (d_error * Kd);
 }
