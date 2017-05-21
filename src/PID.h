@@ -11,8 +11,17 @@ public:
   double d_error;
 
   /*
+  * Twiddle
+  */
+  double dp;
+  double di;
+  double dd;
+  double best_err;
+
+
+  /*
   * Coefficients
-  */ 
+  */
   double Kp;
   double Ki;
   double Kd;
@@ -36,6 +45,11 @@ public:
   * Update the PID error variables given cross track error.
   */
   void UpdateError(double cte);
+
+  /*
+  * Calculate Twiddle for coefficients
+  */
+  void Twiddle(double cte);
 
   /*
   * Calculate the total PID error.
