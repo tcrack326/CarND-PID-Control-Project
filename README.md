@@ -3,6 +3,15 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Reflection
+
+For my PID controller I spent a lot of time tuning the parameters to get a speed
+above 60mph. I used a method like Twiddle to tune the parameters in which I implemented a function that adjusted the coefficient values (Kp, Ki, Kd) by increasing them by 10% if cross-track error decreases from the lowest cross-track error achieved for each iteration. If the cross-track error increases then I would lower the value of the coefficient by 10%, and I decreased the amount of the change by 10%. So the first increase in cross-track error decreased the amount of change to 9%. This made it so that jumps around an ideal coefficient became less and less as they got closer and closer to an "ideal" coefficient value. The challenge to doing this is that the values are dependent on each other so that the ideal coefficient is only ideal in relation to what the others are. So I then manually twiddled values around along with my algorithm one at a time until I reached my goal of going over 60mph.
+
+I began to notice the effects of each piece of the controller 'P', Proportional, 'I', Integral, and 'D', Derivative, as I tuned the parameters/coefficients. I began to think of them as forces that countered one another and that my job was to find some numbers to balance these forces. The 'P' force pulls car to the center line, and if it is too strong it pulls the car way across the center and then back again creating that oscillation around the line. The 'D' helps to decrease this pull of 'P' so that it does not pull as far over the center line as the counter force to 'P'. The 'I' force really weakens the pull of each as they get close to the center such that it doesn't oscillate wildly as the forces battle to pull the car one way and that.
+
+Tuning these parameters for a track with curves is tough as it is constantly changing. I was able to get above 60mph but my car does oscillate around the center line a fair amount. Tuning these parameters some more can decrease this and I have succeeded in getting much better results with lower speeds, but I really wanted to test how high of a velocity I could achieve.
+
 ## Dependencies
 
 * cmake >= 3.5
@@ -25,7 +34,7 @@ Self-Driving Car Engineer Nanodegree Program
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+4. Run it: `./pid`.
 
 ## Editor Settings
 
